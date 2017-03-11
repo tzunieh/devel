@@ -6,20 +6,20 @@ If you haven't install Docker in your Mac, please download from [here](https://w
 Once you have Docker installed, you will need to build a base Docker image first.
 
 ```bash
-$ cd devel/environment/golang
+$ cd environment/golang
 $ docker build -t golang .
 ```
 
-What we are doing in here is we use `docker build` to build a reuseable base docker image `python3_ylinux6:latest` from our `Dockerfile`. This will be the base image when everytime you want to spin up a new container for your Python36 on Linux development.
+What we are doing in here is we use `docker build` to build a reuseable base docker image `golang:latest` from our `Dockerfile`. This will be the base image when everytime you want to spin up a new container for your Python36 on Linux development.
 
 
 With the base image we just created, we can now spin up a new container for my Python development.
 
 ```bash
-$ docker run --name <YourContainerName> -p 8090:8090 -v $PWD:/devel -it golang:latest bash
+$ docker run --name go_dev -p 8090:8090 -v $PWD:/go -it golang:latest bash
 ```
 
-Above command will create a news Docker container then mount the current directory `$PWD` to `/devel` inside of your Docker environment, so youc can easily sync up your code change between your Docker and Host(Mac) environment.
+Above command will create a news Docker container then mount the current directory `$PWD` to `/go` inside of your Docker environment, so youc can easily sync up your code change between your Docker and Host(Mac) environment.
 
 After exected this command, you should be able to see the new environment you just created. Let's exit and stop docker container first.
 
@@ -43,8 +43,8 @@ Now you should be able to see your docker container:
 
 ```bash
 $ docker ps -al
-CONTAINER ID        IMAGE                      COMMAND             CREATED             STATUS              PORTS                    NAMES
-e7165993e2e7        python3_ylinux6:latest     "bash"              9 hours ago         Up 39 minutes       0.0.0.0:4080->4080/tcp   <YourContainerName>
+CONTAINER ID        IMAGE             COMMAND             CREATED             STATUS              PORTS                    NAMES
+e7165993e2e7        golang:latest     "bash"              9 hours ago         Up 39 minutes       0.0.0.0:4080->4080/tcp   <YourContainerName>
 ```
 
 To **start** and **access** your container when everytime you want to work on your development, you just need to execute this command:
@@ -77,12 +77,8 @@ List all Docker images
 
 ```bash
 $ docker images
-REPOSITORY                                          TAG                 IMAGE ID            CREATED             SIZE
-python3_ylinux6                                     latest              db6728504976        9 hours ago         3.61 GB
-mocker-dev                                          latest              e36482cce2c9        8 days ago          1.13 GB
-zosimos/nodejs7-python36                            latest              f0202317d317        6 weeks ago         798 MB
-centos                                              latest              67591570dd29        2 months ago        192 MB
-docker-registry.ops.yahoo.com:4443/ylinux/ylinux6   latest              2ea1537e0728        11 months ago       3.34 GB
+REPOSITORY     TAG           IMAGE ID            CREATED             SIZE
+golang         latest        db6728504976        9 hours ago         3.61 GB
 ```
 
 
