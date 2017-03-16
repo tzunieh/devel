@@ -1,6 +1,6 @@
 FROM chef/chefdk:latest
 
 RUN gem install foodcritic \
-	&& gem install rubocop
+    && gem install rubocop
 
 CMD ['/bin/bash']
