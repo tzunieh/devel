@@ -1,7 +1,11 @@
-FROM zosimos/nodejs:latest
+FROM zosimos/nodejs_python:latest
 
+# http://tecadmin.net/install-ruby-2-2-on-centos-rhel/
+# https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-on-centos-6-with-rvm
+# https://www.softwarecollections.org/en/scls/rhscl/rh-ruby23/
 ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/rh/rh-ruby23/root/usr/lib64 \
-    PATH=$PATH:/opt/rh/rh-ruby23/root/usr/bin:/opt/rh/rh-ruby23/root/usr/local/bin
+    PATH=$PATH:/opt/rh/rh-ruby23/root/usr/bin:/opt/rh/rh-ruby23/root/usr/local/bin \
+    PYTHONPATH=/usr/local/lib/python3.6/site-packages
 
 RUN yum install -y vim gcc gcc-c++ \
     && yum install -y vim supervisor \
@@ -13,12 +17,12 @@ RUN yum install -y vim gcc gcc-c++ \
     && yum install -y rh-ruby23 \
     && yum install -y rh-ruby23-ruby-devel \
     && source /opt/rh/rh-ruby23/enable \
+    && mkdir /var/log/supervisor \
+    && which ruby \
     && gem install bundler \
     && gem install sass \
+    && which sass \
+    && pip3.6 install setuptools Django requests future -U \
     && npm install babel-cli bower webpack forever gulp gulp-util pretty-hrtime chalk semver archy liftoff tildify interpret v8flags minimist typescript tsd eslint http-server -g --save-dev
 
 CMD ['bash']
-
-[Video] Python Sharing  - Start Your Yahoo Django Application
-Slide: https://drive.google.com/open?id=1KY1voFVWQ5jZfsAC1QZz9qYAMRh0qoVC_vlz1n9FViY 
-Download Video: https://drive.google.com/open?id=0B4OrkSMeJrEfREE4V0x4V2dwX1k 
