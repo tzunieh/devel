@@ -15,14 +15,13 @@ return [0, 1].
 import unittest
 
 def leetcode_twosum(nums, target):
-    for i in range(target):
+    for idx_0, val_0 in enumerate(nums):
         try:
-            idx_0 = nums.index(i)
-            nums[idx_0] = 'x'
-            idx_1 = nums.index(target - i)
-            return [idx_0, idx_1] if idx_0 < idx_1 else [idx_1, idx_0]
+            idx_1 = nums[(idx_0 + 1):].index(target - val_0)
+            return [idx_0, idx_1 + idx_0 + 1]
         except:
             continue
+        
 
 
 class TestStringMethods(unittest.TestCase):
@@ -62,6 +61,13 @@ class TestStringMethods(unittest.TestCase):
             leetcode_twosum([0, 4, 3, 0], 0), 
             [0, 3]
         )
+
+    def test_negative_twosum(self):
+        self.assertEqual(
+            leetcode_twosum([0, 4, 3, -2], 2), 
+            [1, 3]
+        )
+
 
 if __name__ == '__main__':
     unittest.main()
