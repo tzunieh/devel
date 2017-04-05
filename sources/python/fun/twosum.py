@@ -14,14 +14,12 @@ return [0, 1].
 """
 import unittest
 
-def leetcode_twosum(data, sum):
-    sorted_data = sorted(data + [sum])
-    sorted_data = sorted_data[0:sorted_data.index(sum)]
-
-    for value in sorted_data:
+def leetcode_twosum(nums, target):
+    for i in range(target):
         try:
-            idx_0 = data.index(sum - value)
-            idx_1 = data.index(value)
+            idx_0 = nums.index(i)
+            nums[idx_0] = 'x'
+            idx_1 = nums.index(target - i)
             return [idx_0, idx_1] if idx_0 < idx_1 else [idx_1, idx_0]
         except:
             continue
@@ -51,6 +49,18 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(
             leetcode_twosum([3, 22, 9, 11, 7, 4], 15), 
             [3, 5]
+        )
+
+    def test_duplicated_twosum(self):
+        self.assertEqual(
+            leetcode_twosum([3, 3, 5, 7, 9], 6), 
+            [0, 1]
+        )
+
+    def test_zero_twosum(self):
+        self.assertEqual(
+            leetcode_twosum([0, 4, 3, 0], 0), 
+            [0, 3]
         )
 
 if __name__ == '__main__':
