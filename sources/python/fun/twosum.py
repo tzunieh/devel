@@ -14,7 +14,12 @@ return [0, 1].
 """
 import unittest
 
-def leetcode_twosum(nums, target):
+def twosum(nums, target):
+    """
+    :type nums: List[int]
+    :type target: int
+    :rtype: List[int]
+    """
     for idx_0, val_0 in enumerate(nums):
         try:
             idx_1 = nums[(idx_0 + 1):].index(target - val_0)
@@ -23,48 +28,47 @@ def leetcode_twosum(nums, target):
             continue
         
 
-
 class TestStringMethods(unittest.TestCase):
 
     def test_sorted_twosum(self):
         self.assertEqual(
-            leetcode_twosum([2, 7, 11, 15], 9), 
+            twosum([2, 7, 11, 15], 9),
             [0, 1]
         )
         self.assertEqual(
-            leetcode_twosum([2, 7, 11, 15], 18), 
+            twosum([2, 7, 11, 15], 18),
             [1, 2]
         )
 
     def test_unsorted_twosum(self):
         self.assertEqual(
-            leetcode_twosum([3, 2, 9, 11, 7, 4], 5), 
+            twosum([3, 2, 9, 11, 7, 4], 5),
             [0, 1]
         )
         self.assertEqual(
-            leetcode_twosum([3, 2, 9, 11, 7, 4], 20), 
+            twosum([3, 2, 9, 11, 7, 4], 20),
             [2, 3]
         )
         self.assertEqual(
-            leetcode_twosum([3, 22, 9, 11, 7, 4], 15), 
+            twosum([3, 22, 9, 11, 7, 4], 15),
             [3, 5]
         )
 
     def test_duplicated_twosum(self):
         self.assertEqual(
-            leetcode_twosum([3, 3, 5, 7, 9], 6), 
+            twosum([3, 3, 5, 7, 9], 6),
             [0, 1]
         )
 
     def test_zero_twosum(self):
         self.assertEqual(
-            leetcode_twosum([0, 4, 3, 0], 0), 
+            twosum([0, 4, 3, 0], 0),
             [0, 3]
         )
 
     def test_negative_twosum(self):
         self.assertEqual(
-            leetcode_twosum([0, 4, 3, -2], 2), 
+            twosum([0, 4, 3, -2], 2),
             [1, 3]
         )
 
