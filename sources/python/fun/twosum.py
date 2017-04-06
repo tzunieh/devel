@@ -20,13 +20,14 @@ def twosum(nums, target):
     :type target: int
     :rtype: List[int]
     """
-    for idx_0, val_0 in enumerate(nums):
-        try:
-            idx_1 = nums[(idx_0 + 1):].index(target - val_0)
-            return [idx_0, idx_1 + idx_0 + 1]
-        except:
-            continue
-        
+    reversed_data = {}
+
+    for i, v in enumerate(nums):
+        if v in reversed_data:
+            return [reversed_data[v], i]
+        else:
+            reversed_data[target - v] = i
+
 
 class TestStringMethods(unittest.TestCase):
 
