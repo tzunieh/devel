@@ -14,19 +14,19 @@ RUN yum -y update \
     && yum install deltarpm -y \
     && yum install which cd screen wget tar gzip -y \
     && rm -rf /tmp/src \
-    && echo "------------------------- Install Python 3.6.1 --------------------------" \
+    && echo "------------------------- Install Python 3.5.3 --------------------------" \
     && mkdir /tmp/src \
     && cd /tmp/src \
-    && curl -O https://www.python.org/ftp/python/3.6.1/Python-3.6.1.tgz \
+    && curl -O https://www.python.org/ftp/python/3.5.3/Python-3.5.3.tgz \
     && tar xzvf Python-* \
-    && cd Python-3.6.1 \
+    && cd Python-3.5.3 \
     && ./configure --enable-optimizations --enable-shared --with-system-expat --with-system-ffi \
     && make \
     && make install \
     && cd / \
     && rm -rf /tmp/src \
-    && /usr/local/bin/pip3.6 install requests -U \
-    && /usr/local/bin/python3.6 -c "print('Python has been installed successfully')"
+    && /usr/local/bin/pip3.5 install requests -U \
+    && /usr/local/bin/python3.5 -c "print('Python has been installed successfully')"
 
 
 CMD ['/bin/bash']

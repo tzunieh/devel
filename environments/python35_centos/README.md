@@ -1,4 +1,4 @@
-# Docker Image: zosimos/python36
+# Docker Image: zosimos/python35
 
 
 ## Login docker hub
@@ -8,7 +8,7 @@ $ docker login --username=zosimos --email=zosimos.pk@gmail.com
 
 ## Build and push docker image to Docker hub
 ```bash
-$ docker build -t zosimos/python36:latest .
-$ docker push zosimos/python36:latest
+$ docker build -t zosimos/python35:latest .
+$ docker push zosimos/python35:latest
 ```
 

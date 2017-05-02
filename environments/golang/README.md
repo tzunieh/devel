@@ -16,7 +16,7 @@ What we are doing in here is we use `docker build` to build a reuseable base doc
 With the base image we just created, we can now spin up a new container for my Python development.
 
 ```bash
-$ docker run --name go_dev -p 8090:8090 -v $PWD:/go -it golang:latest bash
+$ docker run --name go-dev -p 8090:8090 -v $PWD:/go/src -it golang:latest bash
 ```
 
 Above command will create a news Docker container then mount the current directory `$PWD` to `/go` inside of your Docker environment, so youc can easily sync up your code change between your Docker and Host(Mac) environment.
