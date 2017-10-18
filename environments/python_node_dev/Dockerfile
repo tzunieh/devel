@@ -1,11 +1,11 @@
-FROM zosimos/python35_node7:latest
+FROM zosimos/python_node:latest
 
 # http://tecadmin.net/install-ruby-2-2-on-centos-rhel/
 # https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-on-centos-6-with-rvm
 # https://www.softwarecollections.org/en/scls/rhscl/rh-ruby23/
 ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/rh/rh-ruby23/root/usr/lib64 \
     PATH=$PATH:/opt/rh/rh-ruby23/root/usr/bin:/opt/rh/rh-ruby23/root/usr/local/bin \
-    PYTHONPATH=/usr/local/lib/python3.5/site-packages
+    PYTHONPATH=/usr/local/lib/python3.6/site-packages
 
 RUN yum install -y vim gcc gcc-c++; yum clean all \
     && yum install -y vim supervisor; yum clean all \
@@ -22,7 +22,7 @@ RUN yum install -y vim gcc gcc-c++; yum clean all \
     && gem install bundler \
     && gem install sass \
     && which sass \
-    && pip3.5 install setuptools Django requests future -U \
+    && pip3.6 install setuptools Django requests future -U \
     && npm install babel-cli bower webpack forever gulp gulp-util pretty-hrtime chalk semver archy liftoff tildify interpret v8flags minimist typescript tsd eslint http-server -g --save-dev
 
 CMD ['bash']

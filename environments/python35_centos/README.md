@@ -3,7 +3,7 @@
 
 ## Login docker hub
 ```bash
-$ docker login --username=zosimos --email=zosimos.pk@gmail.com
+$ docker login --username=zosimos
 ```
 
 ## Build and push docker image to Docker hub
