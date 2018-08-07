@@ -1,7 +1,7 @@
 FROM zosimos/nodejs:latest
 
-ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/rh/rh-ruby23/root/usr/lib64 \
-    PATH=$PATH:/opt/rh/rh-ruby23/root/usr/bin:/opt/rh/rh-ruby23/root/usr/local/bin
+ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/rh/rh-ruby25/root/usr/lib64 \
+    PATH=$PATH:/opt/rh/rh-ruby23/root/usr/bin:/opt/rh/rh-ruby25/root/usr/local/bin
 
 RUN yum install -y vim gcc gcc-c++ \
     && yum install -y vim supervisor \
@@ -10,15 +10,12 @@ RUN yum install -y vim gcc gcc-c++ \
     && yum install -y sqlite sqlite-devel libyaml \
     && yum install -y scl-utils \
     && yum install -y centos-release-scl \
-    && yum install -y rh-ruby23 \
-    && yum install -y rh-ruby23-ruby-devel \
-    && source /opt/rh/rh-ruby23/enable \
+    && yum install -y rh-ruby25 \
+    && yum install -y rh-ruby25-ruby-devel \
+    && source /opt/rh/rh-ruby25/enable \
     && gem install bundler \
     && gem install sass \
-    && npm install babel-cli bower webpack forever gulp gulp-util pretty-hrtime chalk semver archy liftoff tildify interpret v8flags minimist typescript tsd eslint http-server -g --save-dev
+    && npm install babel-cli yarn webpack forever gulp pretty-hrtime chalk semver archy liftoff tildify interpret v8flags typescript typings eslint http-server ember-cli graceful-fs@latest minimatch@latest ember-cli -g --save-dev
 
-CMD ['bash']
 
-[Video] Python Sharing  - Start Your Yahoo Django Application
-Slide: https://drive.google.com/open?id=1KY1voFVWQ5jZfsAC1QZz9qYAMRh0qoVC_vlz1n9FViY 
-Download Video: https://drive.google.com/open?id=0B4OrkSMeJrEfREE4V0x4V2dwX1k 
+CMD ['/bin/bash']

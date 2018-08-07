@@ -12,13 +12,10 @@ RUN yum -y update \
     && rm -rf /tmp/src \
     && mkdir /tmp/src \
     && cd /tmp/src \
-    && wget http://nodejs.org/dist/latest-v7.x/node-v7.7.3.tar.gz \
-    && tar xzvf node-v* \
-    && cd ./node-v7.7.3 \
-    && ./configure \
-    && make \
-    && make install \
-    && cd / \
-    && rm -rf /tmp/src
+    && curl --silent --location https://rpm.nodesource.com/setup_10.x | bash - \
+    && yum -y install nodejs \
+    && which node \
+    && which npm
+
 
 CMD ['/bin/bash']

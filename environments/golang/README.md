@@ -7,7 +7,7 @@ Once you have Docker installed, you will need to build a base Docker image first
 
 ```bash
 $ cd environment/golang
-$ docker build -t golang .
+$ docker build -t gobase .
 ```
 
 What we are doing in here is we use `docker build` to build a reuseable base docker image `golang:latest` from our `Dockerfile`. This will be the base image when everytime you want to spin up a new container for your Python36 on Linux development.
@@ -16,7 +16,7 @@ What we are doing in here is we use `docker build` to build a reuseable base doc
 With the base image we just created, we can now spin up a new container for my Python development.
 
 ```bash
-$ docker run --name go-dev -p 8090:8090 -v $PWD:/go/src -it golang:latest bash
+$ docker run --name go_dev -p 8090:8090 -v $PWD:/go -it gobase:latest bash
 ```
 
 Above command will create a news Docker container then mount the current directory `$PWD` to `/go` inside of your Docker environment, so youc can easily sync up your code change between your Docker and Host(Mac) environment.
